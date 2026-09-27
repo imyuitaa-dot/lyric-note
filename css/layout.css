@@ -1,0 +1,84 @@
+/*
+  layout.css
+  ------------------------------------------------------------
+  画面全体の骨組み(ヘッダー、コンテンツ領域、下部ナビなど)のレイアウト。
+  個々の部品(カード、ボタンなど)の見た目は components.css 側に書く。
+*/
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: var(--safe-top);
+}
+
+/* 画面上部の見出しバー。戻るボタンやタイトルを置く */
+.view-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background: var(--color-bg);
+  z-index: 10;
+}
+
+.view-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.view-main {
+  flex: 1;
+  padding: 16px;
+  padding-bottom: calc(24px + var(--safe-bottom));
+}
+
+/* HOME画面のメニューを縦に並べるグリッド */
+.home-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.home-menu__item--wide {
+  grid-column: 1 / -1;
+}
+
+/* 画面下部に固定するバー(部分メモ追加バーなどで、後のPhaseで使用) */
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px 16px calc(10px + var(--safe-bottom));
+  background: var(--color-surface-raised);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.row--between {
+  justify-content: space-between;
+}

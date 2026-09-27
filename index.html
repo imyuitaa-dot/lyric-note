@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Lyric Note</title>
+
+<!-- iPhoneでホーム画面に追加したとき、Webアプリとして動くようにする設定 -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyric Note">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1b1d22">
+
+<!-- パスはすべて相対パス(./)にしている。GitHub Pagesは https://ユーザー名.github.io/リポジトリ名/ の
+     ようにサブディレクトリ配下で配信されるため、"/css/..." のような絶対パスだと壊れるからです。 -->
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/layout.css">
+<link rel="stylesheet" href="./css/components.css">
+</head>
+<body>
+
+  <!-- 画面全体はこの1つの要素の中身を書き換えることで切り替える(簡易ルーティング) -->
+  <div id="app" class="app">
+    <p class="boot-message">読み込み中...</p>
+  </div>
+
+  <!-- トースト通知(「保存しました」等の軽い通知)を表示する場所 -->
+  <div id="toast-root" class="toast-root" aria-live="polite"></div>
+
+  <!-- type="module" にすることで、各JSファイルをES Modulesとして読み込める。
+       このため file:// では動かないので、GitHub PagesなどHTTPS配信で確認する必要がある。 -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

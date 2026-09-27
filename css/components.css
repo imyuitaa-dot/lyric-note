@@ -1,0 +1,784 @@
+/*
+  components.css
+  ------------------------------------------------------------
+  ボタンやカードなど、繰り返し使う部品の見た目。
+  Phase 0時点ではHOMEメニューのボタンとトースト、簡単な「準備中」表示のみ。
+  後のPhaseで song-card / note-popup 等のスタイルをここに追記していく。
+*/
+
+.menu-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+  min-height: 72px;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  text-align: left;
+}
+
+.menu-button:active {
+  background: var(--color-surface-raised);
+}
+
+.menu-button__label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.menu-button__hint {
+  font-size: 12px;
+  color: var(--color-text-muted);
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  border-radius: var(--radius-s);
+}
+
+.icon-button:active {
+  background: var(--color-surface);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding: 0 18px;
+  border-radius: var(--radius-m);
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #12131a;
+}
+
+.btn--primary:active {
+  background: var(--color-accent-strong);
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.btn--danger {
+  background: transparent;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+}
+
+.btn--danger:active {
+  background: var(--color-danger);
+  color: #12131a;
+}
+
+/* 「この曲を削除」など、取り消せない操作を目立たせつつ他と区別するための枠。 */
+.danger-zone {
+  border-color: var(--color-danger);
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  padding: 16px;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--color-text-muted);
+  padding: 48px 16px;
+}
+
+.status-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.status-panel__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.status-ok {
+  color: var(--color-success);
+}
+
+.status-ng {
+  color: var(--color-danger);
+}
+
+/* トースト通知 */
+.toast-root {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(16px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.toast {
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  padding: 12px 16px;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+/* ================================================================
+   曲カード(曲一覧・お気に入り・アーティスト別などで共通利用)
+   ================================================================ */
+
+.song-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.song-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  text-align: left;
+}
+
+.song-card:active {
+  background: var(--color-surface-raised);
+}
+
+.song-card__jacket {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-s);
+  background: linear-gradient(135deg, #3a3f5c, #545a7d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
+}
+
+.song-card__jacket img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-card__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.song-card__title {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.song-card__artist {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* お気に入りのハートボタン(一覧・詳細で共通) */
+.favorite-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  font-size: 22px;
+  color: var(--color-text-faint);
+}
+
+.favorite-toggle[data-active="true"] {
+  color: var(--color-favorite);
+}
+
+/* ================================================================
+   並び替えコントロール(曲一覧上部)
+   ================================================================ */
+
+.sort-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.sort-bar select {
+  flex: 1;
+  min-height: var(--tap-min);
+  padding: 0 10px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+}
+
+/* ================================================================
+   フォーム共通(曲追加・編集)
+   ================================================================ */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.field__label--required::after {
+  content: " *";
+  color: var(--color-danger);
+}
+
+.field input[type="text"],
+.field textarea,
+.field select {
+  min-height: var(--tap-min);
+  padding: 10px 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+  width: 100%;
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.field__error {
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+/* ================================================================
+   歌詞ブロック編集
+   ================================================================ */
+
+.block-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.block-editor__item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  padding: 12px;
+  background: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.block-editor__item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.block-editor__item-header .field {
+  /* ボタンが4つ(ドラッグ/上/下/削除)になり、狭い画面では
+     セクション名入力と横並びだと窮屈になるため、入力欄は常に単独の行にする。 */
+  flex: 1 1 100%;
+}
+
+.block-editor__remove {
+  flex-shrink: 0;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  color: var(--color-danger);
+}
+
+/* ================================================================
+   曲詳細
+   ================================================================ */
+
+.song-detail__jacket {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 260px;
+  margin: 0 auto 16px;
+  border-radius: var(--radius-l);
+  background: linear-gradient(135deg, #3a3f5c, #545a7d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.song-detail__jacket img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.song-detail__title {
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.song-detail__artist {
+  font-size: 15px;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.song-detail__meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.toggle-pill {
+  display: inline-flex;
+  min-height: 36px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.toggle-pill button {
+  padding: 0 14px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.toggle-pill button[aria-pressed="true"] {
+  background: var(--color-accent);
+  color: #12131a;
+  font-weight: 600;
+}
+
+.lyrics-block {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lyrics-block:last-child {
+  border-bottom: none;
+}
+
+.lyrics-block__section {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.lyrics-block__en {
+  white-space: pre-wrap;
+  font-size: 16px;
+}
+
+.lyrics-block__ja {
+  white-space: pre-wrap;
+  font-size: 14px;
+  color: var(--color-text-muted);
+  margin-top: 6px;
+}
+
+.song-note textarea {
+  min-height: 120px;
+}
+
+/* ================================================================
+   歌詞まとめ貼り付けパネル(<details>/<summary>)
+   ================================================================ */
+
+.card > summary {
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+}
+
+.card > summary + p {
+  margin-top: 10px;
+}
+
+.card[open] > summary {
+  margin-bottom: 10px;
+}
+
+details.card .field {
+  margin-top: 10px;
+}
+
+/* ================================================================
+   部分選択メモ: 下線・選択バー・ポップアップ・orphaned一覧
+   ================================================================ */
+
+.note-underline {
+  text-decoration: underline dotted;
+  text-decoration-color: var(--color-note-underline);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.note-underline:active {
+  background: rgba(255, 184, 76, 0.18);
+  border-radius: 2px;
+}
+
+.bottom-bar__quote {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 200;
+}
+
+.modal-dialog {
+  width: 100%;
+  max-width: 420px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-l);
+  padding: 16px;
+}
+
+.note-popup__quote {
+  padding: 10px 12px;
+  background: var(--color-surface);
+  border-radius: var(--radius-s);
+  font-size: 14px;
+  color: var(--color-text-muted);
+  white-space: pre-wrap;
+}
+
+.orphaned-notes {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orphaned-notes__title {
+  font-size: 12px;
+  color: var(--color-danger);
+  font-weight: 600;
+}
+
+.orphaned-notes__row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px 10px;
+  background: var(--color-surface);
+  border-radius: var(--radius-s);
+}
+
+.orphaned-notes__quote {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.orphaned-notes__text {
+  font-size: 14px;
+  white-space: pre-wrap;
+}
+
+/* ================================================================
+   アーティスト名オートコンプリート
+   ================================================================ */
+
+.autocomplete-wrapper {
+  position: relative;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 30;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.autocomplete-list li {
+  padding: 12px;
+  min-height: var(--tap-min);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.autocomplete-list li:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-list li:active {
+  background: var(--color-surface);
+}
+
+/* ================================================================
+   アーティスト一覧
+   ================================================================ */
+
+.artist-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: var(--tap-min);
+  padding: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-m);
+  text-align: left;
+}
+
+.artist-row:active {
+  background: var(--color-surface-raised);
+}
+
+.artist-row__name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.artist-row__count {
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+/* ================================================================
+   曲追加/編集: ジャケット画像フィールド
+   ================================================================ */
+
+.image-field__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.image-field__preview {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-m);
+  background: linear-gradient(135deg, #3a3f5c, #545a7d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+}
+
+.image-field__preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-field__buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ================================================================
+   グループ詳細: 曲の並び替え行
+   ================================================================ */
+
+.group-song-row {
+  align-items: center;
+  gap: 4px;
+}
+
+.group-song-row .song-card {
+  flex: 1;
+  min-width: 0;
+  padding: 8px;
+}
+
+.group-song-row .icon-button {
+  font-size: 13px;
+  white-space: nowrap;
+  padding: 0 6px;
+}
+
+/* ================================================================
+   曲追加/編集: 所属グループのチェックボックス
+   ================================================================ */
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--tap-min);
+  padding: 4px 0;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* ================================================================
+   検索(Phase 8)
+   ================================================================ */
+
+/* type="search" もtype="text"と同じ見た目にする */
+.field input[type="search"] {
+  min-height: var(--tap-min);
+  padding: 10px 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-s);
+  width: 100%;
+}
+
+.search-result-list {
+  gap: 12px;
+}
+
+.search-result-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+}
+
+.search-result-card__song {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+}
+
+.search-result-card__matches {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.search-result-match {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+  padding-left: 4px;
+  border-left: 2px solid var(--color-border);
+}
+
+.search-result-match__field {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.search-result-match__excerpt {
+  color: var(--color-text-muted);
+  word-break: break-word;
+}
+
+.search-result-match--more {
+  color: var(--color-text-muted);
+  font-style: italic;
+  border-left-color: transparent;
+}
+
+/* ================================================================
+   ドラッグ並び替え(Phase 9)
+   ================================================================ */
+
+/* つまむ場所であることが分かるよう、指でつまみやすい見た目にする */
+.drag-handle {
+  cursor: grab;
+  font-size: 18px;
+  color: var(--color-text-muted);
+}
+
+/* ドラッグ中、元の行はその場に残したまま薄く表示する
+   (ドロップ先は指に追従する分身(.drag-ghost)側で見せるため) */
+.drag-source {
+  opacity: 0.35;
+}
+
+/* 指に追従する「分身」。元の行の見た目をそのまま複製して使う */
+.drag-ghost {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0.95;
+}
